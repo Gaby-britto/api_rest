@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const Admin = sequelize.define('Admi', {
+const Admin = sequelize.define('Admin', {
     id_administradores: {
         type: DataTypes.INTEGER,
         primaryKey: true,
