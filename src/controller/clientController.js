@@ -1,4 +1,4 @@
-const clientService = require("../services/clientService");  
+const clientService = require("../services/clientServer");  
 const Client = require("../models/clientModel");  
 
 const clientController = {

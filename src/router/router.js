@@ -11,7 +11,7 @@ const router = Router();
 router.use('/admin', adminRouter);
 router.use('/cliente', clientRouter);
 router.use('/account', accountRouter);
-router.use('/notificacao', notificationsRouter)
-router.use('/transacao', transactionsRouter)
+router.use('/notifications', notificationsRouter)
+router.use('/transactions', transactionsRouter)
 
 module.exports = router;
