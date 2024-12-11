@@ -1,27 +1,25 @@
-const clienteService = require("../services/clientServer");
-const Cliente = require("../models/clientModel");
+const clientService = require("../services/clientService");  
+const Client = require("../models/clientModel");  
 
-const clienteController = {
+const clientController = {
   create: async (req, res) => {
     try {
       const { nome, email } = req.body;
 
-      const clienteCriado = await Cliente.create({
+      const clienteCriado = await Client.create({  
         nome,
         email,
       });
 
       return res.status(201).json({
         msg: "Cliente criado com sucesso!",
-        cli: clienteCriado,
+        cliente: clienteCriado,  
       });
     } catch (error) {
       console.error(error);
-      return res
-        .status(500)
-        .json({
-          msg: "Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.",
-        });
+      return res.status(500).json({
+        msg: "Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.",
+      });
     }
   },
 
@@ -30,8 +28,8 @@ const clienteController = {
     const { nome, email } = req.body;
 
     try {
-      const clienteUpdate = await Cliente.findByPk(id);
-      if (clienteUpdate == null) {
+      const clienteUpdate = await Client.findByPk(id); 
+      if (!clienteUpdate) {
         return res.status(404).json({
           msg: "Cliente não encontrado",
         });
@@ -44,24 +42,22 @@ const clienteController = {
 
       return res.status(200).json({
         msg: "Cliente atualizado com sucesso",
-        cliente: updatedCliente,
+        cliente: updatedCliente,  
       });
     } catch (error) {
       console.error(error);
-      return res
-        .status(500)
-        .json({
-          msg: "Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.",
-        });
+      return res.status(500).json({
+        msg: "Ocorreu um erro no servidor. Por favor, tente novamente mais tarde.",
+      });
     }
   },
 
   getAll: async (req, res) => {
     try {
-      const clientes = await clienteService.getAll();
+      const clientes = await clientService.getAll();  
       return res.status(200).json({
         msg: "Todos os Clientes",
-        clientes,
+        clientes,  
       });
     } catch (error) {
       console.error(error);
@@ -73,7 +69,7 @@ const clienteController = {
 
   getOne: async (req, res) => {
     try {
-      const cliente = await clienteService.getById(req.params.id);
+      const cliente = await clientService.getById(req.params.id);  
       if (!cliente) {
         return res.status(404).json({
           msg: "Cliente não encontrado",
@@ -81,7 +77,7 @@ const clienteController = {
       }
       return res.status(200).json({
         msg: "Cliente encontrado",
-        cliente,
+        cliente, 
       });
     } catch (error) {
       console.error(error);
@@ -93,7 +89,7 @@ const clienteController = {
 
   delete: async (req, res) => {
     try {
-      const clienteDeletado = await clienteService.delete(req.params.id);
+      const clienteDeletado = await clientService.delete(req.params.id);  
       if (!clienteDeletado) {
         return res.status(404).json({
           msg: "Cliente não encontrado",
@@ -111,4 +107,4 @@ const clienteController = {
   },
 };
 
-module.exports = clienteController;
+module.exports = clientController; 

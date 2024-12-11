@@ -1,9 +1,9 @@
-const contaService = require("../services/accountService");
+const accountService = require("../services/accountService");
 
-const contaController = {
+const accountController = {
   create: async (req, res) => {
     try {
-      const conta = await contaService.create(req.body);
+      const conta = await accountService.create(req.body); 
       return res.status(201).json({
         msg: "Conta criada com sucesso",
         Conta: conta,
@@ -17,10 +17,10 @@ const contaController = {
   },
   getAll: async (req, res) => {
     try {
-      const conta = await contaService.getAll();
+      const contas = await accountService.getAll(); 
       return res.status(200).json({
         msg: "Contas:",
-        conta,
+        contas,
       });
     } catch (error) {
       return res.status(500).json({
@@ -30,14 +30,14 @@ const contaController = {
   },
   getOne: async (req, res) => {
     try {
-      const conta = await contaService.getById(req.params.id);
+      const conta = await accountService.getById(req.params.id);
       if (!conta) {
         return res.status(400).json({
-          msg: "Conta não encontrado!",
+          msg: "Conta não encontrada!",
         });
       }
       return res.status(200).json({
-        msg: "conta encontrada",
+        msg: "Conta encontrada",
         conta,
       });
     } catch (error) {
@@ -48,10 +48,10 @@ const contaController = {
   },
   delete: async (req, res) => {
     try {
-      const conta = await contaService.delete(req.params.id);
+      const conta = await accountService.delete(req.params.id);
       if (!conta) {
         return res.status(400).json({
-          msg: "Conta não encontrado.",
+          msg: "Conta não encontrada.",
         });
       }
       return res.status(200).json({
@@ -64,4 +64,5 @@ const contaController = {
     }
   },
 };
-module.exports = contaController;
+
+module.exports = accountController; 

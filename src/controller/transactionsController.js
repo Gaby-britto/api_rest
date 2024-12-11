@@ -1,67 +1,71 @@
-const transacaoService = require('../services/transactionService')
+const transactionService = require('../services/transactionService'); 
 
-const transacaoController={
-    create: async (req, res) => {
-        try {
-          const transacao = await transacaoService.create(req.body);
-          return res.status(201).json({
-            msg: "Transação criada com sucesso",
-            transacao,
-          });
-        } catch (error) {
-          console.error(error);
-          return res.status(500).json({
-            msg: "Erro ao tentar criar a transacao!",
-          });
-        }
-      },
-      getAll: async (req, res) => {
-        try {
-          const transacao = await transacaoService.getAll();
-          return res.status(200).json({
-            msg: "Transações:",
-            transacao,
-          });
-        } catch (error) {
-          return res.status(500).json({
-            msg: "Erro ao buscar as transções.",
-          });
-        }
-      },
-      getOne: async (req, res) => {
-        try {
-          const transacao = await transacaoService.getById(req.params.id);
-          if (!transacao) {
-            return res.status(400).json({
-              msg: "Transação não encontrado!",
-            });
-          }
-          return res.status(200).json({
-            msg: "Transação encontrada",
-            transacao,
-          });
-        } catch (error) {
-          return res.status(500).json({
-            msg: "Erro ao buscar a transacao.",
-          });
-        }
-      },
-      delete: async (req, res) => {
-        try {
-          const transacao = await transacaoService.delete(req.params.id);
-          if (!transacao) {
-            return res.status(400).json({
-              msg: "Transação não encontrada.",
-            });
-          }
-          return res.status(200).json({
-            msg: "Transação deletada.",
-          });
-        } catch (error) {
-          return res.status(500).json({
-            msg: "Erro ao deletar a transação.",
-          });
-        }
-      },
+const transactionController = { 
+  create: async (req, res) => {
+    try {
+      const transacao = await transactionService.create(req.body); 
+      return res.status(201).json({
+        msg: "Transação criada com sucesso",
+        transacao,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        msg: "Erro ao tentar criar a transação!",
+      });
+    }
+  },
+
+  getAll: async (req, res) => {
+    try {
+      const transacoes = await transactionService.getAll(); 
+      return res.status(200).json({
+        msg: "Todas as Transações",
+        transacoes,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        msg: "Erro ao buscar as transações.",
+      });
+    }
+  },
+
+  getOne: async (req, res) => {
+    try {
+      const transacao = await transactionService.getById(req.params.id); 
+      if (!transacao) {
+        return res.status(400).json({
+          msg: "Transação não encontrada!",
+        });
+      }
+      return res.status(200).json({
+        msg: "Transação encontrada",
+        transacao, 
+      });
+    } catch (error) {
+      return res.status(500).json({
+        msg: "Erro ao buscar a transação.",
+      });
+    }
+  },
+
+  delete: async (req, res) => {
+    try {
+      const transacao = await transactionService.delete(req.params.id); 
+      if (!transacao) {
+        return res.status(400).json({
+          msg: "Transação não encontrada.",
+        });
+      }
+      return res.status(200).json({
+        msg: "Transação deletada com sucesso.",
+      });
+    } catch (error) {
+      return res.status(500).json({
+        msg: "Erro ao deletar a transação.",
+      });
+    }
+  },
 };
-module.exports=transacaoController;
+
+module.exports = transactionController; 

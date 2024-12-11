@@ -1,8 +1,9 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Cliente = require("./clientModel");
+const Client = require("./clientModel");  
 
-const Notificacoes = sequelize.define("Notificaoes", {
+
+const Notification = sequelize.define("Notification", { 
   id_notificacao: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -11,8 +12,8 @@ const Notificacoes = sequelize.define("Notificaoes", {
   id_cliente: {
     type: DataTypes.INTEGER,
     references: {
-      model: Cliente,
-      key: "id",
+      model: Client,  
+      key: "id",     
     },
     allowNull: false,
   },
@@ -26,4 +27,4 @@ const Notificacoes = sequelize.define("Notificaoes", {
   },
 });
 
-module.exports = Notificacoes;
+module.exports = Notification;  

@@ -1,24 +1,26 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Cliente = require('./cliente');
+const Client = require('./client'); 
 
-const Conta = sequelize.define('conta',{
-    id_conta: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
+
+const Account = sequelize.define('Account', { 
+  id_conta: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  id_cliente: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Client, 
+      key: 'id',     
     },
-    id_cliente:{
-        type: DataTypes.INTEGER,
-        references:{
-            model:Cliente,
-            key:"id",
-        },
-        allowNull: false
-    },
-    saldo:{
-        type: DataTypes.DOUBLE,
-        allowNull: false
-    }
-})
-module.exports = Conta;
+    allowNull: false
+  },
+  saldo: {
+    type: DataTypes.DOUBLE,
+    allowNull: false
+  }
+});
+
+module.exports = Account;
