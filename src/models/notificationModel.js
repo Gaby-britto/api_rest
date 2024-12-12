@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Client = require("./clientModel");  
+const Clients = require("./clientModel");  
 
 
 const Notification = sequelize.define("Notification", { 
@@ -12,7 +12,7 @@ const Notification = sequelize.define("Notification", {
   id_cliente: {
     type: DataTypes.INTEGER,
     references: {
-      model: Client,  
+      model: Clients,  
       key: "id",     
     },
     allowNull: false,

@@ -9,7 +9,7 @@ const notificationController = {
         notificacao, 
       });
     } catch (error) {
-      console.error(error);
+      console.error("erro:", error);
       return res.status(500).json({
         msg: "Erro ao tentar criar a notificação!",
       });

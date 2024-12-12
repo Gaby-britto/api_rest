@@ -3,12 +3,14 @@ const Transactions = require("../models/transactionsModel");
 const transactionsService = {
   create: async (transacao) => {
     try {
+      // Certifique-se de usar 'data_transacao' corretamente
+      console.log(transacao.tipo_conta)
       return await Transactions.create({
         id_conta: transacao.id_conta,
-        tipo_conta: transacao.tipo_conta,
+        tipo_Conta: transacao.tipo_conta,
         tipo_transacao: transacao.tipo_transacao,
         valor: transacao.valor,
-        data_transacao: transacao.data, 
+        data_transacao: transacao.data_transacao, // Certifique-se que é 'data_transacao' e não 'data'
       });
     } catch (error) {
       console.error(error); 
